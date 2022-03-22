@@ -25,12 +25,12 @@ int	checker_digit(char **argv)
 
 int	checker(int argc, char **argv)
 {
-	if (argc > 5)
+	if (argc > 6)
 	{
 		printf("error : too many arguments\n");
 		return (1);
 	}
-	else if (argc < 5)
+	else if (argc < 6)
 	{
 		printf("error : invalid arguments\n");
 		return (1);

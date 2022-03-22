@@ -2,8 +2,10 @@
 
 int	main(int argc, char *argv[])
 {
-	if (checker(argc, argv) == 0)
-		return (2);
+	t_philo	philo;
 
+	if (checker(argc, argv) == 1)
+		return (1);
+	parce(argv, &philo);
 	return (0);
 }
