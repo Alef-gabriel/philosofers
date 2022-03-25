@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:03:35 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/21 21:10:27 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/24 22:11:29 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo.h"
 
 int	ft_atoi(const char *nptr)
 {
@@ -32,4 +34,20 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 		stg = (stg * 10) + (nptr[i++] - '0');
 	return (stg * signal);
+}
+
+long long int	get_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+float time_diff(struct timeval *start)
+{
+	struct timeval	end;
+
+	gettimeofday(&end, NULL);
+	return (end.tv_sec - start->tv_sec) + 1e-6*(end.tv_usec - start->tv_usec);
 }
