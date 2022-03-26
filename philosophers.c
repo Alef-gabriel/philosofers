@@ -1,16 +1,14 @@
 #include "philo.h"
 
-struct timeval	start;
-
 void	*philo_eat(t_pthred *args)
 {
 	pthread_mutex_lock(args->left_fork->mut);
-	printf("[%0.3f] %d has taken a fork\n", time_diff(&start), args->id);
+	printf("[%0.3f] %d has taken a fork\n", time_diff(args->data->start), args->id);
 	pthread_mutex_lock(args->right_fork->mut);
-	printf("[%0.3f] %d has taken a fork\n", time_diff(&start), args->id);
+	printf("[%0.3f] %d has taken a fork\n", time_diff(args->data->start), args->id);
 	args->philo_eat++;
 	gettimeofday(args->eat_time, NULL);
-	printf("[%0.3f] %d is eating\n", time_diff(&start), args->id);
+	printf("[%0.3f] %d is eating\n", time_diff(args->data->start), args->id);
 	usleep(args->data->time_to_eat);
 	pthread_mutex_unlock(args->left_fork->mut);
 	pthread_mutex_unlock(args->right_fork->mut);
@@ -25,9 +23,9 @@ void	*life_philo(void *args)
 	while (!philo->philo_death)
 	{
 		philo_eat(philo);
-		printf("[%0.3f] %d is sleeping\n", time_diff(&start), philo->id);
+		printf("[%0.3f] %d is sleeping\n", time_diff(philo->data->start), philo->id);
 		usleep(philo->data->time_to_sleep);
-		printf("[%0.3f] %d is thinking\n", time_diff(&start), philo->id);
+		printf("[%0.3f] %d is thinking\n", time_diff(philo->data->start), philo->id);
 	}
 }
 
@@ -108,7 +106,7 @@ int	start_simulation(t_philo *philo)
 	int	i;
 
 	i = 0;
-	gettimeofday(&start, NULL);
+	gettimeofday(philo->start, NULL);
 	while (i < philo->number_of_philosophers)
 	{
 		if (pthread_create(philo->info[i]->th, NULL, &life_philo, philo->info[i]))

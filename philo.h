@@ -31,6 +31,7 @@ typedef struct s_philosophers{
 	int				time_to_sleep;
 	int				must_eat;
 	int				all_philo_death;
+	struct timeval	*start;
 	t_fork			**forks;
 	t_pthred		**info;
 }	t_philo;
