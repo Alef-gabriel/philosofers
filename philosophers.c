@@ -2,13 +2,13 @@
 
 void	*philo_eat(t_pthred *args)
 {
-	pthread_mutex_lock(args->left_fork->mut);
-	printf("[%0.3f] %d has taken a fork\n", time_diff(args->data->start), args->id);
 	pthread_mutex_lock(args->right_fork->mut);
-	printf("[%0.3f] %d has taken a fork\n", time_diff(args->data->start), args->id);
+	printf("[%d] %d has taken a fork\n", (int)(time_diff(args->data->start) * 1000), args->id);
+	pthread_mutex_lock(args->left_fork->mut);
+	printf("[%d] %d has taken a fork\n", (int)(time_diff(args->data->start) * 1000), args->id);
 	args->philo_eat++;
 	gettimeofday(args->eat_time, NULL);
-	printf("[%0.3f] %d is eating\n", time_diff(args->data->start), args->id);
+	printf("[%d] %d is eating\n", (int)(time_diff(args->data->start) * 1000), args->id);
 	usleep(args->data->time_to_eat);
 	pthread_mutex_unlock(args->left_fork->mut);
 	pthread_mutex_unlock(args->right_fork->mut);
@@ -23,9 +23,9 @@ void	*life_philo(void *args)
 	while (!philo->philo_death)
 	{
 		philo_eat(philo);
-		printf("[%0.3f] %d is sleeping\n", time_diff(philo->data->start), philo->id);
+		printf("[%d] %d is sleeping\n", (int)(time_diff(philo->data->start) * 1000), philo->id);
 		usleep(philo->data->time_to_sleep);
-		printf("[%0.3f] %d is thinking\n", time_diff(philo->data->start), philo->id);
+		printf("[%d] %d is thinking\n", (int)(time_diff(philo->data->start) * 1000), philo->id);
 	}
 }
 
@@ -69,7 +69,8 @@ t_pthred	**info_inicialize(t_philo *data)
 		info[i]->left_fork = data->forks[j];
 		info[i]->right_fork = data->forks[j + 1];
 		i++;
-		//j++;
+		if (i < data->number_of_philosophers - 1)
+			j++;
 	}
 	return (info);
 }
@@ -87,8 +88,8 @@ int	monitoring(t_philo *data)
 		{
 			if (data->info[i]->philo_eat && time_diff(data->info[i]->eat_time) > (float)data->time_to_die / 1000)
 			{
-				printf("philo die\n");
-				exit(0);
+				printf("[%d] %d died\n", (int)(time_diff(data->start) * 1000), data->info[i]->id);
+				return (1);
 			}
 			if (data->must_eat == data->info[i]->philo_eat)
 				data->info[i]->philo_death = 1;
@@ -99,6 +100,7 @@ int	monitoring(t_philo *data)
 		if (i == data->number_of_philosophers)
 			all_philo_death = 1;
 	}
+	return (0);
 }
 
 int	start_simulation(t_philo *philo)
