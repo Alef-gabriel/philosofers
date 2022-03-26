@@ -2,14 +2,14 @@
 
 void	*philo_eat(t_pthred *args)
 {
-	pthread_mutex_lock(args->right_fork->mut);
-	printf("[%d] %d has taken a fork\n", (int)(time_diff(args->data->start) * 1000), args->id);
 	pthread_mutex_lock(args->left_fork->mut);
+	printf("[%d] %d has taken a fork\n", (int)(time_diff(args->data->start) * 1000), args->id);
+	pthread_mutex_lock(args->right_fork->mut);
 	printf("[%d] %d has taken a fork\n", (int)(time_diff(args->data->start) * 1000), args->id);
 	args->philo_eat++;
 	gettimeofday(args->eat_time, NULL);
 	printf("[%d] %d is eating\n", (int)(time_diff(args->data->start) * 1000), args->id);
-	usleep(args->data->time_to_eat);
+	usleep(args->data->time_to_eat * 1000);
 	pthread_mutex_unlock(args->left_fork->mut);
 	pthread_mutex_unlock(args->right_fork->mut);
 
@@ -24,7 +24,7 @@ void	*life_philo(void *args)
 	{
 		philo_eat(philo);
 		printf("[%d] %d is sleeping\n", (int)(time_diff(philo->data->start) * 1000), philo->id);
-		usleep(philo->data->time_to_sleep);
+		usleep(philo->data->time_to_sleep * 1000);
 		printf("[%d] %d is thinking\n", (int)(time_diff(philo->data->start) * 1000), philo->id);
 	}
 }
@@ -86,12 +86,12 @@ int	monitoring(t_philo *data)
 		i = 0;
 		while (i < data->number_of_philosophers)
 		{
-			if (data->info[i]->philo_eat && time_diff(data->info[i]->eat_time) > (float)data->time_to_die / 1000)
+			if (data->info[i]->philo_eat && (int)time_diff(data->info[i]->eat_time) * 1000 > data->time_to_die * 1000)
 			{
 				printf("[%d] %d died\n", (int)(time_diff(data->start) * 1000), data->info[i]->id);
 				return (1);
 			}
-			if (data->must_eat == data->info[i]->philo_eat)
+			if (data->info[i]->philo_eat >= data->must_eat)
 				data->info[i]->philo_death = 1;
 			if (data->info[i]->philo_death == 0)
 				break ;
