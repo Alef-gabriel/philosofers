@@ -19,6 +19,8 @@ typedef struct s_philothread{
 	int				philo_death;
 	t_fork			*left_fork;
 	t_fork			*right_fork;
+	struct timeval	*eat_time;
+	struct s_philosophers	*data;
 	int				id;
 }	t_pthred;
 
