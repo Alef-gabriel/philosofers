@@ -6,8 +6,6 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-//t_fork pthread_mutex_t	*mut;
-
 typedef struct s_fork{
 	int				id;
 	pthread_mutex_t	*mut;
@@ -36,15 +34,21 @@ typedef struct s_philosophers{
 	t_pthred		**info;
 }	t_philo;
 
-int	checker_digit(char **argv);
+int			checker_digit(char **argv);
 
-int	checker(int argc, char **argv);
+int			checker(int argc, char **argv);
 
-int	ft_atoi(const char *nptr);
+int			ft_atoi(const char *nptr);
 
-int	parce(char **argv, t_philo *st);
+int			parce(char **argv, t_philo *st);
 
-long long int	get_time(void);
+float		time_diff(struct timeval *start);
 
-float time_diff(struct timeval *start);
+t_pthred	**info_inicialize(t_philo *data);
+
+void		init_fork(t_philo *data);
+
+void		*life_philo(void *args);
+
+void		*philo_eat(t_pthred *args);
 #endif
