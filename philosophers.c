@@ -86,7 +86,7 @@ int	monitoring(t_philo *data)
 		i = 0;
 		while (i < data->number_of_philosophers)
 		{
-			if (data->info[i]->philo_eat && (int)time_diff(data->info[i]->eat_time) * 1000 > data->time_to_die * 1000)
+			if (data->info[i]->philo_eat && (int)time_diff(data->info[i]->eat_time) * 1000 > data->time_to_die)
 			{
 				printf("[%d] %d died\n", (int)(time_diff(data->start) * 1000), data->info[i]->id);
 				return (1);
