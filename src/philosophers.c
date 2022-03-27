@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:21 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/26 23:45:28 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:41:54 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	monitoring(t_philo *data)
 				printf("[%d] %d died\n", (int)(time_diff(data->start) * 1000), data->info[i]->id);
 				return (1);
 			}
-			if (data->info[i]->philo_eat >= data->must_eat)
+			if (data->must_eat != -1 && data->info[i]->philo_eat >= data->must_eat)
 				data->info[i]->philo_death = 1;
 			if (data->info[i]->philo_death == 0)
 				break ;

@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:38 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/26 22:05:39 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:04:36 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	checker_digit(char **argv)
 
 int	checker(int argc, char **argv)
 {
-	if (argc > 6)
+	if (argc > 5)
 	{
 		printf("error : too many arguments\n");
 		return (1);
 	}
-	else if (argc < 6)
+	else if (argc < 5)
 	{
 		printf("error : invalid arguments\n");
 		return (1);
