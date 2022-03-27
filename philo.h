@@ -51,4 +51,6 @@ void		init_fork(t_philo *data);
 void		*life_philo(void *args);
 
 void		*philo_eat(t_pthred *args);
+
+void	clear_struct(t_philo *data);
 #endif

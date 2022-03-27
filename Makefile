@@ -12,7 +12,7 @@ PATH_SRC = ./src/
 PATH_OBJS = ./objs/
 
 SRCS = $(PATH_SRC)checker.c $(PATH_SRC)init.c $(PATH_SRC)parce.c \
-	$(PATH_SRC)philosophers.c $(PATH_SRC)utils.c
+	$(PATH_SRC)philosophers.c $(PATH_SRC)utils.c $(PATH_SRC)clean.c
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))
 

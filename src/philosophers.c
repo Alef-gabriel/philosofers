@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:21 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/26 22:16:38 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/26 23:45:28 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ int	main(int argc, char *argv[])
 	philo.info = info_inicialize(&philo);
 	start_simulation(&philo);
 	monitoring(&philo);
-	//pthread_mutex_destroy(&mut);
+	clear_struct(&philo);
 	return (0);
 }
