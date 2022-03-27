@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:26 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/27 15:07:16 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/27 17:29:31 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int	parce(char **argv, t_philo *st)
 	}
 	else
 		st->must_eat = -1;
-	st->start = (struct timeval *)malloc(sizeof(struct timeval));
 	return (0);
 }

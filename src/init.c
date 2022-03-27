@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:32 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/26 22:13:37 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:38:46 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	*life_philo(void *args)
 	while (!philo->philo_death)
 	{
 		philo_eat(philo);
-		printf("[%d] %d is sleeping\n", (int)(time_diff(philo->data->start) * 1000), philo->id);
+		printf("[%ld] %d is sleeping\n", time_from_start_in_ms(), philo->id);
 		usleep(philo->data->time_to_sleep * 1000);
-		printf("[%d] %d is thinking\n", (int)(time_diff(philo->data->start) * 1000), philo->id);
+		printf("[%ld] %d is thinking\n", time_from_start_in_ms(), philo->id);
 	}
 	return ((void *)args);
 }
@@ -59,7 +59,7 @@ t_pthred	**info_inicialize(t_philo *data)
 		info[i] = (t_pthred *)malloc(sizeof(t_pthred));
 		info[i]->id = i + 1;
 		info[i]->philo_death = 0;
-		info[i]->eat_time = (struct timeval *)malloc(sizeof(struct timeval));
+		info[i]->time_eat = 0;
 		info[i]->philo_eat = 0;
 		info[i]->data = data;
 		info[i]->th = (pthread_t *)malloc(sizeof(pthread_t));

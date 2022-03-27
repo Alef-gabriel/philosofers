@@ -17,7 +17,7 @@ typedef struct s_philothread{
 	int				philo_death;
 	t_fork			*left_fork;
 	t_fork			*right_fork;
-	struct timeval	*eat_time;
+	unsigned int	time_eat;
 	struct s_philosophers	*data;
 	int				id;
 }	t_pthred;
@@ -29,7 +29,6 @@ typedef struct s_philosophers{
 	int				time_to_sleep;
 	int				must_eat;
 	int				all_philo_death;
-	struct timeval	*start;
 	t_fork			**forks;
 	t_pthred		**info;
 }	t_philo;
@@ -42,8 +41,6 @@ int			ft_atoi(const char *nptr);
 
 int			parce(char **argv, t_philo *st);
 
-float		time_diff(struct timeval *start);
-
 t_pthred	**info_inicialize(t_philo *data);
 
 void		init_fork(t_philo *data);
@@ -53,4 +50,6 @@ void		*life_philo(void *args);
 void		*philo_eat(t_pthred *args);
 
 void	clear_struct(t_philo *data);
+
+unsigned long	time_from_start_in_ms(void);
 #endif
