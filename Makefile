@@ -8,7 +8,7 @@ RM = rm -rf
 
 INCLUDE = -pthread
 
-PATH_SRC = ./src/
+PATH_SRC = ./
 PATH_OBJS = ./objs/
 
 SRCS = $(PATH_SRC)checker.c $(PATH_SRC)init.c $(PATH_SRC)parce.c \
