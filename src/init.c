@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:32 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/27 19:38:46 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:13:10 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ void	*life_philo(void *args)
 	t_pthred	*philo;
 
 	philo = (t_pthred *)args;
-	while (!philo->philo_death)
-	{
-		philo_eat(philo);
-		printf("[%ld] %d is sleeping\n", time_from_start_in_ms(), philo->id);
-		usleep(philo->data->time_to_sleep * 1000);
-		printf("[%ld] %d is thinking\n", time_from_start_in_ms(), philo->id);
-	}
-	return ((void *)args);
+	if (philo->id % 2 == 0)
+		usleep(50);
+	philo_eat(philo);
+	printf("[%ld] %d is sleeping\n", time_from_start_in_ms(), philo->id);
+	usleep(philo->data->time_to_sleep * 1000);
+	printf("[%ld] %d is thinking\n", time_from_start_in_ms(), philo->id);
+	return (life_philo((void *)args));
 }
 
 void	init_fork(t_philo *data)
@@ -53,7 +52,8 @@ t_pthred	**info_inicialize(t_philo *data)
 
 	i = 0;
 	j = 0;
-	info = (t_pthred **)malloc(sizeof(t_pthred *) * data->number_of_philosophers);
+	info = (t_pthred **)malloc(sizeof(t_pthred *)
+			* data->number_of_philosophers);
 	while (i < data->number_of_philosophers)
 	{
 		info[i] = (t_pthred *)malloc(sizeof(t_pthred));
