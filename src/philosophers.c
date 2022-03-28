@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:21 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/28 15:01:31 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/28 16:06:20 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*philo_eat(t_pthred *args)
 static int	death_checker(t_pthred *philo, int time, int time_to_die,
 	int must_eat)
 {
-	if (philo->philo_eat && time > time_to_die + 10)
+	if (time > time_to_die + 10)
 	{
 		printf("[%ld] %d died\n", time_from_start_in_ms(), philo->id);
 		exit(0);
@@ -55,7 +55,7 @@ int	monitoring(t_philo *data)
 		all_philo_death = 0;
 		while (i < data->number_of_philosophers)
 		{
-			time = (time_from_start_in_ms() - data->info[i]->time_eat) * 0.52;
+			time = (time_from_start_in_ms() - data->info[i]->time_eat);
 			all_philo_death += death_checker(data->info[i], time,
 					data->time_to_die, data->must_eat);
 			i++;

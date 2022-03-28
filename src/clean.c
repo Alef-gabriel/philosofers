@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 23:37:11 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/27 17:29:20 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:54:03 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	clear_struct(t_philo *data)
 		free(data->info[i]);
 		i++;
 	}
+	free(data->forks[i]->mut);
 	free(data->forks);
 	free(data->info);
 }
