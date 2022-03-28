@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:21 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/28 16:51:42 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:03:39 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	*philo_eat(t_pthred *args)
 static int	death_checker(t_pthred *philo, int time, int time_to_die,
 	int must_eat)
 {
-	if (time > time_to_die)
+	if (philo->data->time_to_eat + philo->data->time_to_sleep > time_to_die
+		&& time > time_to_die)
 	{
 		printf("[%ld] %d died\n", time_from_start_in_ms(), philo->id);
 		exit(0);

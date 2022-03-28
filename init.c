@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:32 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/28 16:19:12 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:00:24 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	init_fork(t_philo *data)
 	int		i;
 
 	i = 0;
-	tmp = (t_fork **)malloc(sizeof(t_fork *) * (data->number_of_philosophers + 1));
+	tmp = (t_fork **)malloc(sizeof(t_fork *)
+			* (data->number_of_philosophers + 1));
 	while (i < data->number_of_philosophers)
 	{
 		tmp[i] = (t_fork *)malloc(sizeof(t_fork));
