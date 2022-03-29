@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:21 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/28 21:06:22 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:37:06 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*philo_eat(t_pthred *args)
 	args->time_eat = time_from_start_in_ms();
 	args->philo_eat++;
 	printf("[%ld] %d is eating\n", time_from_start_in_ms(), args->id);
-	usleep((args->data->time_to_eat * 1000) * 0.50);
+	usleep(args->data->time_to_eat * 1000);
 	pthread_mutex_unlock(args->left_fork->mut);
 	pthread_mutex_unlock(args->right_fork->mut);
 	return ((void *)args);
@@ -33,7 +33,7 @@ static int	death_checker(t_pthred *philo, int time, int time_to_die,
 	if (time > time_to_die)
 	{
 		printf("[%ld] %d died\n", time_from_start_in_ms(), philo->id);
-		exit(0);
+		return (-1);
 	}
 	if (must_eat != -1 && philo->philo_eat >= must_eat)
 	{
@@ -46,6 +46,7 @@ static int	death_checker(t_pthred *philo, int time, int time_to_die,
 int	monitoring(t_philo *data)
 {
 	int	i;
+	int	aux;
 	int	time;
 	int	all_philo_death;
 
@@ -56,8 +57,11 @@ int	monitoring(t_philo *data)
 		while (i < data->number_of_philosophers)
 		{
 			time = (time_from_start_in_ms() - data->info[i]->time_eat);
-			all_philo_death += death_checker(data->info[i], time,
+			aux = death_checker(data->info[i], time,
 					data->time_to_die, data->must_eat);
+			if (aux == -1)
+				return (1);
+			all_philo_death += aux;
 			i++;
 		}
 		if (all_philo_death == i)
