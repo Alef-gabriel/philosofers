@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:21 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/28 17:28:52 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:06:22 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*philo_eat(t_pthred *args)
 	args->time_eat = time_from_start_in_ms();
 	args->philo_eat++;
 	printf("[%ld] %d is eating\n", time_from_start_in_ms(), args->id);
-	usleep(args->data->time_to_eat * 1000);
+	usleep((args->data->time_to_eat * 1000) * 0.50);
 	pthread_mutex_unlock(args->left_fork->mut);
 	pthread_mutex_unlock(args->right_fork->mut);
 	return ((void *)args);

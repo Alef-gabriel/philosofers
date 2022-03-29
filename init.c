@@ -6,7 +6,7 @@
 /*   By: algabrie <alefgabrielr@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:05:32 by algabrie          #+#    #+#             */
-/*   Updated: 2022/03/28 17:00:24 by algabrie         ###   ########.fr       */
+/*   Updated: 2022/03/28 21:06:18 by algabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*life_philo(void *args)
 		usleep(50);
 	philo_eat(philo);
 	printf("[%ld] %d is sleeping\n", time_from_start_in_ms(), philo->id);
-	usleep(philo->data->time_to_sleep * 1000);
+	usleep((philo->data->time_to_sleep * 1000) * 0.50);
 	printf("[%ld] %d is thinking\n", time_from_start_in_ms(), philo->id);
 	return (life_philo((void *)args));
 }
